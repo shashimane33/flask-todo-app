@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 720px;
+            margin: 40px auto;
+        }
+
+        form {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 6px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do Manager</h1>
+
+    <form action="/addtask" method="POST">
+        <label>Item Name</label>
+        <input name="task" placeholder="Enter task" required />
+
+        <label>Item Description</label>
+        <textarea name="desc" placeholder="Enter description" rows="4" required></textarea>
+
+        <button type="submit">Add Task</button>
+    </form>
+    <% if (data && data.length) { %>
+        <h2>Existing Tasks</h2>
+        <ul>
+            <% data.forEach(function(item){ %>
+                <li><strong>
+                        <%= item.task %>
+                    </strong>: <%= item.description %>
+                </li>
+                <% }) %>
+        </ul>
+        <% } else { %>
+            <p>No tasks yet.</p>
+            <% } %>
+</body>
+
+</html>
