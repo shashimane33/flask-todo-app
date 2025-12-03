@@ -1,3 +1,4 @@
+require("dotenv").config();
 var express = require('express');
 var app = express();
 
@@ -5,7 +6,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
-const URL = "http://localhost:5000"
+const URL = process.env.BACKEND_URL || "http://localhost:5000"
+console.log('Using backend URL:', URL);
+
 
 const fetch = (...args) =>
     import('node-fetch').then(({ default: fetch }) => fetch(...args));
